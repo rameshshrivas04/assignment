@@ -1,0 +1,119 @@
+<br>
+<form name="assignmentForm" class="form-horizontal" novalidate enctype="multipart/form-data">
+	<div class="panel panel-primary well-sm">
+		<div class="panel-body">
+			<div class="row" ng-show="!isPreview">
+				<div class="col-sm-8">
+					<h3 class="text-center">Add Assignment</h3>
+					<br>
+					<div class="form-group">
+						<label class="col-sm-3">Assignment Type</label>
+						<div class="col-sm-9">
+							<div class="btn-group">
+								<label class="btn btn-default"> <input
+									ng-model="assignment.assignmentType" type="radio" name="assignmentType"	value="Desktop" /> Desktop
+								</label> <label class="btn btn-default"> <input
+									ng-model="assignment.assignmentType" type="radio" name="assignmentType"
+									value="Web" /> Web
+								</label> <label class="btn btn-default"> <input
+									ng-model="assignment.assignmentType" type="radio" name="assignmentType"
+									value="Web Services" /> Web Services
+								</label><label class="btn btn-default"> <input
+									ng-model="assignment.assignmentType" type="radio" name="assignmentType"
+									value="HTML" /> HTML
+								</label> <label class="btn btn-default"> <input
+									ng-model="assignment.assignmentType" type="radio" name="assignmentType"
+									value="Java Script" /> Java Script
+								</label>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-3">Assignment Name</label>
+						<div class="col-sm-5">
+							<input ng-model="assignment.assignmentName" class="form-control"
+								placeholder="Maximum 200 characters." my-maxlength="200">
+							<div>
+								character left:<span>{{200-assignment.assignmentName.length}}</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-3">Description</label>
+						<div class="col-sm-5">
+							<textarea ng-model="assignment.description" class="form-control"
+								placeholder="Maximum 1000 characters." my-maxlength="1000"></textarea>
+							<div>
+								character left:<span>{{1000-assignment.description.length}}</span>
+							</div>
+						</div>
+
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3">Level</label>
+						<div class="col-sm-6">
+							<div class="btn-group" >
+								<label class="btn btn-default"> 
+								<input ng-model="assignment.level" type="radio" id="1" name="level" value="Beginner" /> Beginner</label> 
+								<label class="btn btn-default"> 
+								<input  ng-model="assignment.level" type="radio" id="2" name="level" value="Intermediate" /> Intermediate</label>
+								 <label class="btn btn-default"> 
+								 <input ng-model="assignment.level" type="radio" id="3" name="level" value="Expert" /> Expert </label>
+							</div>
+
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3">Add Screenshot(s)</label>
+						<div class="col-sm-5">
+							<span class="btn btn-primary btn-file"> <input
+								ng-model="assignment.screenshots" name="file"
+								id='assignmentFile' class="col-sm-8" type="file" multiple>Choose
+								file
+							</span>
+						</div>
+					</div>
+					<!-- http://bootsnipp.com/snippets/featured/thumbnail-caption-hover-effect -->
+					<div class="form-group">
+						<label class="col-sm-3">Codebase Url</label>
+						<div class="col-sm-5">
+							<input ng-model="assignment.referenceUrls" class="form-control"
+								placeholder="Ex. Url on Git.">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-3"> </label>
+						<div class="col-sm-2">
+							<button type="button" ng-click="saveAssignment(assignment)" class="btn btn-default btn-block">Save</button>
+						</div>
+						<div class="col-sm-2">
+							<button type="button" data-ng-click="reset()" class="btn btn-primary btn-block">Reset</button>
+						</div>
+					</div>
+
+				</div>
+			<div class="col-sm-4">
+					<h3 class="text-center bg-info" ng-show="filelist.length>0">Screenshot(s)</h3>
+						<br>
+					<div class="row">
+						<div ng-if="filelist.length>0" ng-repeat="fileDetails in filelist"
+							src="{{fileDetails.filepath}}"
+							class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+							<div class="zoom_img">
+								<img alt="Svbtle Inspired Menu" class="img-responsive"
+									src="{{fileDetails.filePath}}" style="width:150px;height:100px;">
+									<button type="button" ng-click="removeAttachment(fileDetails.filePath)" class="btn btn-link"  style="text-align: -webkit-center;">Remove</button>
+								<p style="font-size: 15px; text-align: -webkit-right;"
+									class="lead snipp-title">
+ 									
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</form>

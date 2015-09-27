@@ -1,0 +1,106 @@
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+}
+body{
+	background-image:url('../assignment/images/pattern1.jpg');
+}
+.panel-primary {
+    border-color: #dddddd;
+   
+}
+.panel-heading {
+	font-size : 17px;
+}
+.bg-info {
+    background-color: #d9edf7;
+    height: 47px;
+    padding: 11px;
+}
+.zoom_img img{
+margin:-8px;
+height:100px;
+width:100px;
+-moz-transition:-moz-transform 0.5s ease-in; 
+-webkit-transition:-webkit-transform 0.5s ease-in; 
+-o-transition:-o-transform 0.5s ease-in;
+}
+.zoom_img img:hover{
+-moz-transform:scale(2); 
+-webkit-transform:scale(2);
+-o-transform:scale(2);
+}
+/* .divider{ */
+/*        position: absolute; */
+/*     left: 54%; */
+/*     top: 35%; */
+/*     bottom: 30%; */
+/*     border-left:1px solid black; */
+/* } */
+
+.msg {
+	background: #E4E4E4;
+	color: #666666;
+	padding: 12px;
+	padding-left: 16px;
+	border-bottom: 3px solid transparent;
+	margin-bottom: 10px;
+}
+
+.msg:hover {
+	border-bottom-color: #09c;
+}
+
+.msg-info {
+	border-color: #b8dbf2;
+	margin-top: -10px;
+}
+
+.assignment-name h3 {
+	font-size: 24px;
+	margin-top: 0px;
+	letter-spacing: 2px;
+}
+
+.assignment-type {
+	font-size: 15px;
+	margin-top: -6px;
+	font-style: oblique;
+}
+
+.assignment-description p {
+	font-size: 12px;
+	font-weight: bold;
+	color: #000;
+}
+
+.btn-change {
+	background-color: transparent;
+	border: 1px solid #2fa4e7;
+}
+
+.btn-change:hover {
+	background-color: #2fa4e7;
+	color: white;
+}
+
+.fa-star-o:before {
+	content: "\f006";
+	color: #2fa4e7;
+}
