@@ -24,7 +24,7 @@ public class AssignmentController {
 
 	@Autowired
 	private AssignmentService assignmentService;
-	
+
 	@Autowired
 	private AttachmentService attachmentService;
 
@@ -50,39 +50,42 @@ public class AssignmentController {
 	public @ResponseBody
 	ResponseEntity<String> uploadFile(
 			@RequestParam(value = "id", required = false) String id,
+			@RequestParam(value = "fileSequence", required = false) int fileSequence,
 			@RequestParam(value = "file", required = false) MultipartFile file) {
-		System.out.println("----------------1");
-		assignmentService.addFiles(id, file);
+		assignmentService.addFiles(id, fileSequence, file);
 		return new ResponseEntity<String>("", HttpStatus.OK);
 	}
+
 	@RequestMapping(value = "/deleteAll", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody
 	ResponseEntity<String> deleteAll() {
 
 		List<Assignment> assignments = assignmentService.findAll();
-		for(Assignment assignment : assignments){
+		for (Assignment assignment : assignments){
 			assignmentService.delete(assignment);
 		}
 		return new ResponseEntity<String>(
 				Assignment.toJsonArray(assignmentService.findAll()),
 				HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/findAttachments", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody
 	ResponseEntity<String> findAttachments() {
 		return new ResponseEntity<String>(
-				Attachment.toJsonArray(attachmentService.findAll()), HttpStatus.OK);
+				Attachment.toJsonArray(attachmentService.findAll()),
+				HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/deleteAttachments", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody
 	ResponseEntity<String> deleteAttachments() {
 		List<Attachment> attachList = attachmentService.findAll();
-		for(Attachment attachment : attachList){
+		for (Attachment attachment : attachList) {
 			attachmentService.delete(attachment);
 		}
 		return new ResponseEntity<String>(
-				Attachment.toJsonArray(attachmentService.findAll()), HttpStatus.OK);
+				Attachment.toJsonArray(attachmentService.findAll()),
+				HttpStatus.OK);
 	}
 }

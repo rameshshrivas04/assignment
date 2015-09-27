@@ -56,33 +56,28 @@ public class AssignmentServiceImpl implements AssignmentService {
 	}
 
 	@Override
-	public boolean addFiles(String id, MultipartFile file) {
+	public boolean addFiles(String id, int fileSequence, MultipartFile file) {
 		Assignment assignment = this.findOne(id);
 		Attachment attachment = new Attachment();
 		try {
 			byte[] bytes = file.getBytes();
-
 			String fileName = new Date().getTime()
 					+ file.getOriginalFilename().substring(
 							file.getOriginalFilename().lastIndexOf("."));
 
 			// Create the file on server
-			System.out.println("----------------2");
-
 			File serverFile = new File(Utils.ATTACHMENT_FOLDER + fileName);
 			BufferedOutputStream stream = new BufferedOutputStream(
 					new FileOutputStream(serverFile));
 			stream.write(bytes);
 			stream.close();
-			System.out.println("----------------3");
-
 			attachment.setAssignment(assignment.getId());
 			attachment.setFileSize((int) (attachment.getFileSize() + file
 					.getSize()));
 			attachment.setEncryptedFileNames(fileName);
+			attachment.setOriginalFileNames(file.getOriginalFilename());
+			attachment.setFileSequence(fileSequence);
 			attachment = attachmentService.save(attachment);
-			System.out.println("----------------4");
-
 		} catch (FileNotFoundException e) {
 			System.out.println("Error : " + e.getMessage());
 		} catch (IOException e) {

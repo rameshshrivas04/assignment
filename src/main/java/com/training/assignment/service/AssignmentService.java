@@ -13,5 +13,5 @@ public interface AssignmentService {
 	Assignment save(Assignment assignment);
 	Assignment update(Assignment assignment);
 	void delete(Assignment assignment);
-	boolean addFiles(String id, MultipartFile file);
+	boolean addFiles(String id, int fileSequence, MultipartFile file);
 }

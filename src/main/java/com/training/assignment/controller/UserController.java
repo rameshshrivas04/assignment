@@ -25,11 +25,11 @@ public class UserController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST, headers = "Accept=application/json")
 	public @ResponseBody
 	ResponseEntity<String> addAssignment(@RequestBody User user) {
-		user = userService.saveUser(user);
-		if (null == user) {
+		User userFromDb =  userService.saveUser(user);
+		if (null == userFromDb) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			return new ResponseEntity<>(User.toJson(user), HttpStatus.OK);
+			return new ResponseEntity<>(User.toJson(userFromDb), HttpStatus.OK);
 		}
 	}
 
@@ -43,7 +43,7 @@ public class UserController {
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody
 	ResponseEntity<String> getUsers() {
-		List<User> users = userService.findAll();
+		final List<User> users = userService.findAll();
 		return new ResponseEntity<String>(User.toJsonArray(users), HttpStatus.OK);
 	}
 

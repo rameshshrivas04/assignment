@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.training.assignment.utils.Utils;
 
@@ -16,14 +18,21 @@ public class Attachment implements Serializable {
 
 	private static final long serialVersionUID = 3804887503905159512L;
 	private String id;
+	@NotNull
+	@Size(min = 5, max = 200)
 	private String assignment;
+	@Size(min = 0, max = 20000)
 	private int fileSize = 0;
 	private Long createdBy;
+	@NotNull
 	private Date createdOn;
-	private String originalFileNames;
-	private String encryptedFileNames;
+	@NotNull
+	private String originalFileName;
+	@NotNull
+	private String newFileName;
+	@NotNull
+	private int fileSequence;
 
-	 
 	public String getId() {
 		return id;
 	}
@@ -65,19 +74,27 @@ public class Attachment implements Serializable {
 	}
 
 	public String getOriginalFileNames() {
-		return originalFileNames;
+		return originalFileName;
 	}
 
 	public void setOriginalFileNames(String originalFileNames) {
-		this.originalFileNames = originalFileNames;
+		this.originalFileName = originalFileNames;
 	}
 
 	public String getEncryptedFileNames() {
-		return Utils.ATTACHMENT_FOLDER+encryptedFileNames;
+		return Utils.ATTACHMENT_FOLDER + newFileName;
 	}
 
 	public void setEncryptedFileNames(String encryptedFileNames) {
-		this.encryptedFileNames = encryptedFileNames;
+		this.newFileName = encryptedFileNames;
+	}
+
+	public int getFileSequence() {
+		return fileSequence;
+	}
+
+	public void setFileSequence(int fileSequence) {
+		this.fileSequence = fileSequence;
 	}
 
 	public static String toJson(Attachment attachment) {
