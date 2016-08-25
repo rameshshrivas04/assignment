@@ -14,6 +14,7 @@ customerApp.controller('assignmentController', [ '$scope', 'assignmentService',
 		$scope.filelist = {};
 
 	};
+	
 	$('#assignmentFile').change(function(event) {
 		$scope.files = event.target.files;
 		angular.forEach(event.target.files, function(value, key) {
